@@ -7,6 +7,7 @@ import 'package:movie_app/screen/details/components/title_duration.dart';
 
 import '../../../models/movie.dart';
 import 'backdrop_rating.dart';
+import 'cast_and_crew.dart';
 import 'genre.dart';
 
 class Body extends StatelessWidget {
@@ -16,43 +17,40 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BackDropAndRating(size: size, movie: movie),
-        SizedBox(
-          height: kDefaultPadding / 2,
-        ),
-        TitleDuration(movie: movie),
-        Genre(movie: movie),
-        Padding(
-          padding: EdgeInsets.symmetric(
-              vertical: kDefaultPadding / 2, horizontal: kDefaultPadding),
-          child: Text(
-            'Plot Summary',
-            style: Theme.of(context).textTheme.headline5,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          BackDropAndRating(size: size, movie: movie),
+          SizedBox(
+            height: kDefaultPadding / 2,
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: kDefaultPadding,
+          TitleDuration(movie: movie),
+          Genre(movie: movie),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: kDefaultPadding / 2, horizontal: kDefaultPadding),
+            child: Text(
+              'Plot Summary',
+              style: Theme.of(context).textTheme.headline5,
+            ),
           ),
-          child: Text(
-            movie.plot,
-            style: TextStyle(color: Color(0xFF737599)),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: kDefaultPadding,
+            ),
+            child: Text(
+              movie.plot,
+              style: TextStyle(color: Color(0xFF737599)),
+            ),
           ),
-        ),
-        CastAndCrew()
-      ],
+          CastAndCrew(casts: movie.cast,)
+        ],
+      ),
     );
   }
 }
 
-class CastAndCrew extends StatelessWidget {
-  const CastAndCrew({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
+
+
