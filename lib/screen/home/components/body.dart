@@ -16,8 +16,14 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [CategoryList(), Genres(), MovieCarousel()],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CategoryList(),
+          Genres(),
+          SizedBox(height: kDefaultPadding,),
+          MovieCarousel()],
+      ),
     );
   }
 }
