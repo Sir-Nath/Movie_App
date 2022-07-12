@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie_app/screen/details/details_screen.dart';
@@ -13,14 +14,23 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      child: InkWell(
-        onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailsScreen(movie: movie))),
-        borderRadius: BorderRadius.circular(50),
-        child: builldMovieCard(context),
-      ),
+        child: OpenContainer(
+          closedBuilder: (context, VoidCallback){
+            return builldMovieCard(context);
+          },
+          openBuilder: (context, VoidCallback) {
+            return DetailsScreen(movie: movie);
+          },
+        )
+      // InkWell(
+      //   onTap: () => Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (context) => DetailsScreen(movie: movie))),
+      //   borderRadius: BorderRadius.circular(50),
+      //   child: builldMovieCard(context),
+      // ),
+
     );
   }
 
